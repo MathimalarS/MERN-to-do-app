@@ -3,16 +3,15 @@ import { Typewriter } from 'react-simple-typewriter';
 
 const Home = () => {
   const handleButtonClick = () => {
-    
+    // Handle button click logic
   };
 
   return (
     <div className="home-wrapper">
       <div className="home-container">
         <h1 className="home-title">
-
           <Typewriter
-            words={["Turn your 'I should' into 'I did!"]}
+            words={["Turn your 'I should' into 'I did!'"]}
             loop
             cursor
             cursorStyle="|"
