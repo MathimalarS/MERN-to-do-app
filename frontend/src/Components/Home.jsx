@@ -1,9 +1,13 @@
 import '../assets/css/Home.css';
 import { Typewriter } from 'react-simple-typewriter';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate(); // useNavigate to handle navigation
+
   const handleButtonClick = () => {
-    // Handle button click logic
+    // Navigate to Sticky Wall page
+    navigate('/todo');
   };
 
   return (

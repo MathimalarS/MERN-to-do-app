@@ -1,0 +1,116 @@
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-header {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.menu-icon {
+    font-size: 1.2em;
+    color: black;
+}
+
+.sidebar h3 {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    margin-right: 25px;
+}
+
+.search-bar::placeholder {
+    color: white;
+}
+
+.search-bar {
+    width: 90%;
+    padding: 3px 10px;
+    border: 1px solid #000000;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.597);
+    border-radius: 5px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 30%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #ffffff;
+}
+
+.sidebar .menu-items h4 {
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none; /* Remove underline */
+    color: #333; /* Default text color */
+    font-size: 16px;
+    padding: 7px 35px;
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+}
+
+.sidebar ul li a:link,
+.sidebar ul li a:visited {
+    color: #333; /* Ensure link and visited links have the same default color */
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:focus {
+    background-color: lightgrey; /* Background on hover */
+    color: black !important; 
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.link-with-icon {
+    display: flex;
+    align-items: center; /* Center align the icon and text vertically */
+    color: inherit; /* Inherit color from parent, which should be #333 */
+    text-decoration: none; /* Remove underline */
+}
+
+.link-with-icon:hover {
+    background-color: lightgrey; /* Background on hover */
+    color: black; /* Change text color to black on hover */
+}
+
+.link-with-icon .icon-black {
+    margin-right: 10px; /* Space between icon and text */
+}
