@@ -196,3 +196,29 @@ h1 {
         align-items: flex-start;
     }
 }
+.add-task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* This ensures the calendar dropdown is positioned relative to the icon */
+  }
+  
+  .calendar-dropdown {
+    position: absolute;
+    top: 50px; /* Adjust based on the layout */
+    left: 250px; /* Adjust to align with the calendar icon */
+    z-index: 5;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+  }
+  
+  .task-list li {
+    list-style-type: none;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+  }
+  
