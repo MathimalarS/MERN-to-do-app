@@ -7,17 +7,6 @@ const Tasks = () => {
       <div className="sidebar">
         <h3>Menu</h3>
         <input type="text" placeholder="Search" className="search-bar" />
-        <div className="tasks">
-          <h4>Tasks</h4>
-          <ul>
-            <li><Link to="/search">Search</Link></li>
-            <li><Link to="/stickynotes">Sticky Notes</Link></li>
-            <li><Link to="/upcoming">Upcoming Tasks</Link></li>
-            <li><Link to="/calendar">Calendar</Link></li>
-            <li><Link to="/todo">To-do List</Link></li>
-            <li><Link to="/deleted">Deleted</Link></li>
-          </ul>
-        </div>
       </div>
 
       <div className="sticky-notes">

@@ -1,0 +1,45 @@
+.calendar-page {
+    display: flex;
+  }
+  
+  .calendar-content {
+    padding: 20px;
+    flex-grow: 1; /* Take the remaining space */
+  }
+  
+  .calendar-container {
+    margin: 20px 0;
+  }
+  
+  .custom-calendar {
+    background-color: grey; /* Calendar background color */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .react-calendar__tile {
+    color: white; /* Tile text color */
+  }
+  
+  .react-calendar__tile--active {
+    background: #005eb8; /* Active date color */
+  }
+  
+  .tasks-list {
+    margin-top: 20px;
+    background: #4e4545; /* Background color for tasks list */
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .tasks-list ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0;
+  }
+  
+  .tasks-list li {
+    background: #415160; /* Task item background */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
