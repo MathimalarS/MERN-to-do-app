@@ -26,51 +26,57 @@ const CalendarPage = () => {
 
   const tileDisabled = ({ date }) => {
     // Disable dates before today
-    return date < new Date();
+    return date < new Date(new Date().setHours(0, 0, 0, 0)); // Only disable past dates
   };
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
     const selectedDateString = newDate.toISOString().split("T")[0]; // Get date in 'YYYY-MM-DD' format
 
+    console.log("Selected Date:", selectedDateString); // Log selected date
+
     // Filter tasks based on the selected date
     const tasksForDate = tasks.filter(task => {
       const taskDateString = new Date(task.date).toISOString().split("T")[0]; // Convert task date to 'YYYY-MM-DD'
+      console.log("Task Date:", taskDateString); // Log task date
       return taskDateString === selectedDateString; // Compare dates
     });
+
+    console.log("Filtered Tasks:", tasksForDate); // Log filtered tasks
 
     setScheduledTasks(tasksForDate);
   };
 
   return (
-    <div className="calendar-page">
+    <div className="container">
       <Sidebar />
       <div className="calendar-content">
         <h1>Calendar</h1>
-        <div className="calendar-container">
-          <Calendar
-            onChange={handleDateChange}
-            value={date}
-            tileDisabled={tileDisabled} // Disable past dates
-            onClickDay={handleDateChange} // Trigger on date click
-            className="custom-calendar" // Add custom class for styling
-          />
+        <div className="calendar-and-tasks">
+          <div className="calendar-container">
+            <Calendar
+              onChange={handleDateChange}
+              value={date}
+              tileDisabled={tileDisabled} // Disable past dates
+              onClickDay={handleDateChange} // Trigger on date click
+              className="custom-calendar" // Add custom class for styling
+            />
+          </div>
+          <div className="tasks-list">
+            <h2>Tasks for {date.toLocaleDateString()}</h2>
+            {scheduledTasks.length > 0 ? (
+              <ul>
+                {scheduledTasks.map((task, index) => (
+                  <li key={index}>
+                    {index + 1}) {task.text} {/* Make sure this matches your task object's property */}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No tasks scheduled for this date.</p>
+            )}
+          </div>
         </div>
-        <div className="tasks-list">
-  <h2>Tasks for {date.toLocaleDateString()}</h2>
-  {scheduledTasks.length > 0 ? (
-    <ul>
-      {scheduledTasks.map((task, index) => (
-        <li key={index}>
-          {index + 1}) {task.text} {/* Make sure this matches your task object's property */}
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p>No tasks scheduled for this date.</p>
-  )}
-</div>
-
       </div>
     </div>
   );

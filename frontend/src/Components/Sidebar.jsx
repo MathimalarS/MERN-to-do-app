@@ -18,11 +18,6 @@ const Sidebar = () => {
         <h4 className="tasks-title">Tasks</h4>
         <ul>
           <li>
-            <Link to="/upcoming" className="link-with-icon">
-              <FaTasks className="icon-black" /> Upcoming Tasks
-            </Link>
-          </li>
-          <li>
             <Link to="/todo" className="link-with-icon">
               <FaCheckSquare className="icon-black" /> To-do List
             </Link>
