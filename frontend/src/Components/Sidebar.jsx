@@ -34,7 +34,7 @@ const Sidebar = () => {
           </li>
           <li>
             <Link to="/deleted" className="link-with-icon">
-              <FaTrashAlt className="icon-black" /> Deleted
+              <FaTrashAlt className="icon-black" />Deleted Tasks
             </Link>
           </li>
         </ul>

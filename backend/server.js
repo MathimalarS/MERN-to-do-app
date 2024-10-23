@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const taskRoutes = require('./Routes/Taskroute');
 const calendarRoutes = require('./Routes/CalendarRoutes');
+const NoteRoutes = require('./Routes/NodeRoute');
 const morgan = require('morgan');
 require('dotenv').config(); // Load environment variables
 
@@ -17,6 +18,7 @@ app.use(morgan('dev')); // Log requests
 // Routes
 app.use('/api/tasks', taskRoutes);
 app.use('/api/calendar', calendarRoutes);
+app.use('/api/notes', NoteRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
