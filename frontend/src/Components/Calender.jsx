@@ -68,7 +68,7 @@ const CalendarPage = () => {
               <ul>
                 {scheduledTasks.map((task, index) => (
                   <li key={index}>
-                    {index + 1}) {task.text} {/* Make sure this matches your task object's property */}
+                    {index + 1}) {task.text} 
                   </li>
                 ))}
               </ul>
