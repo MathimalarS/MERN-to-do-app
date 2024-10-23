@@ -42,6 +42,43 @@ const DeleteIcon = ({ onClick }) => (
     <line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
+// Tick (checkmark) icon for completed tasks
+const TickIcon = ({ onClick }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    width="16"
+    height="16"
+    onClick={onClick}
+    style={{ cursor: "pointer", color: "green" }}
+  >
+    <path d="M20 6L9 17l-5-5" />
+  </svg>
+);
+
+const CloseIcon = ({ onClick }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    width="16"
+    height="16"
+    onClick={onClick}
+    style={{ cursor: "pointer", color: "red", marginLeft: "10px" }}
+  >
+    <line x1="18" y1="6" x2="6" y2="18" />
+    <line x1="6" y1="6" x2="18" y2="18" />
+  </svg>
+);
 
 
 const SliderIcon = ({ onClick }) => (
@@ -191,7 +228,7 @@ const ToDoList = () => {
             placeholderText="Select a date"
             className="date-picker"
           />
-          <button onClick={handleAddTask}>Add Task</button>
+          <button onClick={handleAddTask}>Add</button>
 
           <div className="filter-tasks">
             <SliderIcon onClick={handleFilterToggle} />
@@ -217,8 +254,10 @@ const ToDoList = () => {
                     value={editedTaskName}
                     onChange={(e) => setEditedTaskName(e.target.value)}
                   />
-                  <button onClick={() => handleSaveTask(index)}>Save</button>
-                  <button onClick={handleCancelEdit}>Cancel</button>
+                   <div className="task-actions-tick">
+                   <TickIcon onClick={() => handleSaveTask(index)} /><span>
+                   <CloseIcon onClick={handleCancelEdit} /></span>
+                   </div>
                 </>
               ) : (
                 <>

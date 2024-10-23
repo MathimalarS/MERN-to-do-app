@@ -112,6 +112,11 @@ h1 {
     font-size: 16px;
     transition: background-color 0.2s ease-in-out;
 }
+/* Update the Tick and Close icons to have consistent spacing */
+.tick-icon,
+.close-icon {
+    margin-left: 10px; /* Adjust margin to maintain spacing */
+}
 
 .dropdown ul li:hover {
     background-color: #f0f0f0;
@@ -128,6 +133,7 @@ h1 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
 }
+
 
 /* Task List */
 .task-list {
@@ -172,8 +178,8 @@ h1 {
 /* Edit Task Input Styling */
 .task-list li.editing input[type="text"] {
     width: 100%;
-    padding: 12px; /* Increased padding for a larger placeholder */
-    font-size: 18px; /* Larger font size for the placeholder */
+    padding: 12px;
+    font-size: 18px;
     border-radius: 6px;
     border: 1px solid #ddd;
     margin-right: 10px;
@@ -181,41 +187,32 @@ h1 {
 }
 
 .task-list li.editing input::placeholder {
-    color: #888; /* Placeholder color */
-    font-size: 16px; /* Adjusted placeholder size */
-}
-
-.task-list li.editing .save-btn::before {
-    content: '✔'; /* Tick icon */
+    color: #888;
     font-size: 16px;
-    margin-right: 5px;
 }
 
-.task-list li.editing .cancel-btn::before {
-    content: '✖'; /* Close icon */
-    font-size: 16px;
-    margin-right: 5px;
-}
 
-/* Adjust hover effects for buttons */
-.task-list li.editing .save-btn:hover {
-    background-color: #218838;
-}
-
-.task-list li.editing .cancel-btn:hover {
-    background-color: #c82333;
-}
-
-/* Media Queries for Responsiveness */
+/* Responsiveness */
 @media (max-width: 768px) {
-    .task-list li.editing {
+    .todo-content {
+        margin-left: 10px; /* Reduce margin for smaller screens */
+        padding: 10px;
+    }
+
+    .add-task {
+        flex-direction: column;
+    }
+
+    .add-task input {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .task-list li {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .task-list li.editing .save-btn,
-    .task-list li.editing .cancel-btn {
-        width: 100%; /* Full width for buttons on small screens */
-        margin: 5px 0;
-    }
+    
+    
 }
