@@ -213,3 +213,57 @@ h1 {
         align-items: flex-start;
     }
 }
+
+.deleted-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 60%;
+    margin: 20px auto;
+  }
+  
+  .deleted-page h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .deleted-page ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .deleted-page li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .deleted-page p {
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .deleted-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .deleted-link a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .deleted-link a:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+  

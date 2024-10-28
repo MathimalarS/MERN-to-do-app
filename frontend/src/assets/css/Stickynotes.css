@@ -1,75 +1,35 @@
-.stickywall-container {
-  display: flex;
-  height: 100vh;
-}
-
-.sticky-notes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  padding: 40px;
-  flex-grow: 1;
-}
-
 .note {
-  position: relative;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
+  padding: 25px;
+  height: 280px;
+  width: 260px;
   display: flex;
   flex-direction: column;
+  background-color: blueviolet;
+  border-radius: 30px;
 }
 
-.note textarea {
-  width: 100%;
-  height: 100px;
-  border: none;
-  background: none;
-  font-size: 1em;
+.note_text {
+  flex: 1;
   resize: none;
+  background-color: transparent;
+  font-size: 1rem;
+  line-height: 1.875rem;
+  outline: none;
+  border: none;
 }
 
-.note img {
-  max-width: 100%;
-  margin-top: 10px;
-}
-
-.note audio {
-  margin-top: 10px;
-}
-
-.note-options {
+.note_footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-}
-
-.note-options label {
-  margin-right: 10px;
-}
-
-.note-options button {
-  background-color: #f00;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.note.empty {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 3em;
-  background-color: #e9e9e9;
-  cursor: pointer;
-  height: 150px;
 }
 
-.note.empty.plus {
-  height: 150px;
-  font-size: 3em;
-  width: 150px;
+.note_footer img {
+  cursor: pointer;
+  opacity: 0;
+  transition: 300ms;
+}
+
+.note:hover .note_footer img {
+  opacity: 1;
 }

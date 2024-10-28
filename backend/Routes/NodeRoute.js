@@ -1,61 +1,33 @@
 const express = require('express');
-const Note = require('../models/note');
 const router = express.Router();
+const Note = require('../Model/Note'); // Make sure the path to the Note model is correct
 
-// GET all notes
-router.get('/notes', async (req, res) => {
-  try {
-    const notes = await Note.find();
-    res.json(notes);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+// @route   POST /api/notes
+// @desc    Create a new note
+router.post('/', async (req, res) => {
+  const { title, color, image, voice, position = { top: 20, left: 20 } } = req.body; // Add default position
+
+  // Ensure title is provided
+  if (!title) {
+    return res.status(400).json({ message: 'Title is required' });
   }
-});
 
-// POST a new note
-router.post('/notes', async (req, res) => {
-  const note = new Note({
-    title: req.body.title,
-    color: req.body.color,
-    image: req.body.image,
-    voice: req.body.voice,
-  });
   try {
-    const newNote = await note.save();
-    res.status(201).json(newNote);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
+    // Create a new note instance with the provided fields
+    const newNote = new Note({
+      title,
+      color: color || '#f7dc6f', // Default color if none is provided
+      image: image || '', // Default empty image if none is provided
+      voice: voice || '', // Default empty voice if none is provided
+      position // Save position data (default or provided)
+    });
 
-// PUT (update) an existing note
-router.put('/notes/:id', async (req, res) => {
-  try {
-    const note = await Note.findById(req.params.id);
-    if (!note) return res.status(404).json({ message: 'Note not found' });
-
-    note.title = req.body.title || note.title;
-    note.color = req.body.color || note.color;
-    note.image = req.body.image || note.image;
-    note.voice = req.body.voice || note.voice;
-
-    const updatedNote = await note.save();
-    res.json(updatedNote);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-});
-
-// DELETE a note
-router.delete('/notes/:id', async (req, res) => {
-  try {
-    const note = await Note.findById(req.params.id);
-    if (!note) return res.status(404).json({ message: 'Note not found' });
-
-    await note.remove();
-    res.json({ message: 'Note deleted' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    // Save the new note to the database
+    const note = await newNote.save();
+    res.json(note); // Return the newly created note as a response
+  } catch (error) {
+    console.error('Error adding note:', error); // Log the complete error details
+    res.status(500).json({ message: 'Error adding note', error: error.message });
   }
 });
 

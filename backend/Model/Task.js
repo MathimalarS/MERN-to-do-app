@@ -10,7 +10,7 @@ const taskSchema = new mongoose.Schema({
     default: false
   },
   date: {
-    type: String, // Changed from Date to String to match YYYY-MM-DD format
+    type: String, 
     required: true
   }
 });
