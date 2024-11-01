@@ -1,4 +1,4 @@
-import { FaCalendarAlt, FaStickyNote, FaTasks, FaCheckSquare, FaTrashAlt, FaBars, FaSearch } from 'react-icons/fa';
+import { FaCalendarAlt, FaStickyNote, FaCheckSquare, FaTrashAlt, FaBars, FaSearch } from 'react-icons/fa';
 import '../assets/css/Sidebar.css';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/stickynotes" className="link-with-icon">
+            <Link to="/notes" className="link-with-icon">
               <FaStickyNote className="icon-black" /> Sticky Notes
             </Link>
           </li>

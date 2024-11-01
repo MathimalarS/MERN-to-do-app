@@ -1,32 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const Note = require('../Model/Note'); // Make sure the path to the Note model is correct
+const Note = require('../Model/Note'); // Ensure this path is correct
 
 // @route   POST /api/notes
 // @desc    Create a new note
 router.post('/', async (req, res) => {
-  const { title, color, image, voice, position = { top: 20, left: 20 } } = req.body; // Add default position
+  const { text, color, position = { top: 20, left: 20 } } = req.body;
 
-  // Ensure title is provided
-  if (!title) {
-    return res.status(400).json({ message: 'Title is required' });
+  // Validate that the required field 'text' (note title) is present
+  if (!text) {
+    return res.status(400).json({ message: 'Text (title) is required' });
   }
 
   try {
-    // Create a new note instance with the provided fields
     const newNote = new Note({
-      title,
-      color: color || '#f7dc6f', // Default color if none is provided
-      image: image || '', // Default empty image if none is provided
-      voice: voice || '', // Default empty voice if none is provided
-      position // Save position data (default or provided)
+      title: text,
+      color: color || 'blueviolet', // Default color if none provided
+      position
     });
 
-    // Save the new note to the database
     const note = await newNote.save();
-    res.json(note); // Return the newly created note as a response
+    res.status(201).json(note); // Send created note as JSON response
   } catch (error) {
-    console.error('Error adding note:', error); // Log the complete error details
+    console.error('Error adding note:', error);
     res.status(500).json({ message: 'Error adding note', error: error.message });
   }
 });

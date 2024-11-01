@@ -1,35 +1,39 @@
+/* Stickynotes.css */
 .note {
-  padding: 25px;
-  height: 280px;
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  background-color: blueviolet;
-  border-radius: 30px;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px;
+  position: relative;
+  width: 200px; /* Set width of note */
+}
+
+.new-note {
+  margin-bottom: 20px;
 }
 
 .note_text {
-  flex: 1;
-  resize: none;
-  background-color: transparent;
-  font-size: 1rem;
-  line-height: 1.875rem;
-  outline: none;
+  width: 100%;
+  height: 100px; /* Set height of text area */
   border: none;
+  border-radius: 5px;
+  resize: none;
 }
 
 .note_footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
+}
+
+.note_footer p {
+  margin: 0;
 }
 
 .note_footer img {
   cursor: pointer;
-  opacity: 0;
-  transition: 300ms;
+  width: 20px; /* Set size of delete icon */
+  height: 20px;
 }
 
-.note:hover .note_footer img {
-  opacity: 1;
-}
+/* Optional: Add color palette for Colour component if needed */

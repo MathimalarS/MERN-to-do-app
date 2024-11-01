@@ -1,15 +1,18 @@
-.note-container {
-    height: 100%;
-  }
-  
-  .note-container h2 {
-    margin-bottom: 20px;
-  }
-  
-  .note-container_notes {
-    height: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    overflow-y: scroll;
-  }
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.color-option {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
