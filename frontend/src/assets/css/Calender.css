@@ -1,40 +1,42 @@
-/* Container for sidebar, calendar, and task section */
+/* Main container for sidebar and main content */
 .container {
   display: flex;
   height: 100vh; /* Full height */
 }
 
 
-
 /* Main content styling for calendar and tasks */
 .calendar-content {
   padding: 20px;
   display: flex;
-  flex-direction: column; /* Change to column to stack heading and calendar */
+  flex-direction: column; /* Stack heading and calendar */
+  flex: 1; /* Take remaining space */
+  align-items: flex-start; /* Align items to the left inside calendar-content */
+  margin-left: 250px /* Push the entire calendar-content to the right */
 }
 
 /* Heading styling */
 .calendar-content h1 {
-  margin-bottom: 70px; /* Add margin for spacing above and below */
-  text-align: center; /* Center the heading text */
+  margin-bottom: 40px;
+  margin-left: 130px;
+  text-align: center; /* Align heading text to the left */
 }
 
 /* Flex container for calendar and tasks side by side */
 .calendar-and-tasks {
   display: flex;
-  margin-right: 370px;
-  justify-content: space-between; /* Pushes the calendar to the right */
-  align-items: flex-start; /* Align items at the top */
-  width: 90%; /* Use full width */
+  justify-content: flex-start; /* Align to the start */
+  align-items: flex-start;
+  width: 100%; /* Full width */
 }
 
-/* Calendar container updates for better spacing and visibility */
+/* Calendar container updates */
 .calendar-container {
-  width: 50%; /* Adjust calendar width */
-  margin-left: auto; /* Push calendar to the right */
+  width: 100%; /* Adjust calendar width */
+  margin-right: 20px; /* Add margin to separate from tasks */
 }
 
-/* Custom calendar container to ensure the calendar mimics the example */
+/* Custom calendar container for additional styling */
 .custom-calendar {
   background-color: #f0f0f0;
   color: #333;
@@ -46,13 +48,29 @@
 
 /* Task section styling */
 .tasks-list {
-  width: 30%; /* Adjust the width for tasks */
+  width: 45%; /* Adjust width for tasks */
   background: #00000088;
   padding: 20px;
   border-radius: 10px;
   color: white;
   text-align: center;
 }
+
+/* Ensure task list scrolls if content overflows */
+.tasks-list ul {
+  list-style-type: none;
+  padding: 0;
+  overflow-y: auto;
+  max-height: 200px; /* Set a max height for scroll */
+}
+
+.tasks-list li {
+  background: #2f3840;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
 
 /* Ensure task list scrolls if content overflows */
 .tasks-list ul {

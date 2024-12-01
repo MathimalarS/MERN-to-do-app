@@ -27,12 +27,7 @@ const Sidebar = () => {
               <FaCalendarAlt className="icon-black" /> Calendar
             </Link>
           </li>
-          <li>
-            <Link to="/notes" className="link-with-icon">
-              <FaStickyNote className="icon-black" /> Sticky Notes
-            </Link>
-          </li>
-          <li>
+           <li>
             <Link to="/deleted" className="link-with-icon">
               <FaTrashAlt className="icon-black" />Deleted Tasks
             </Link>

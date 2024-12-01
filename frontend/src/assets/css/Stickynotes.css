@@ -1,10 +1,30 @@
 /* Stickynotes.css */
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.notes-area {
+  margin-left: 220px;
+  padding: 20px;
+}
+
 .note {
   border-radius: 8px;
   padding: 16px;
   margin: 10px;
   position: relative;
-  width: 200px; /* Set width of note */
+  width: 200px;
+  background-color: var(--note-color, blueviolet); /* Default color */
 }
 
 .new-note {
@@ -13,7 +33,7 @@
 
 .note_text {
   width: 100%;
-  height: 100px; /* Set height of text area */
+  height: 100px;
   border: none;
   border-radius: 5px;
   resize: none;
@@ -32,8 +52,6 @@
 
 .note_footer img {
   cursor: pointer;
-  width: 20px; /* Set size of delete icon */
+  width: 20px;
   height: 20px;
 }
-
-/* Optional: Add color palette for Colour component if needed */

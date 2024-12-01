@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import Calendar from "react-calendar"; // Import the calendar component
-import "react-calendar/dist/Calendar.css"; // Import calendar styles
-import '../assets/css/Calender.css'; // Make sure to style accordingly
+import Calendar from "react-calendar"; 
+import "react-calendar/dist/Calendar.css"; 
+import '../assets/css/Calender.css';
 import Sidebar from "./Sidebar";
 import axios from 'axios';
 
 const CalendarPage = () => {
-  const [date, setDate] = useState(new Date()); // Initialize with the current date
-  const [tasks, setTasks] = useState([]); // State to store tasks
-  const [scheduledTasks, setScheduledTasks] = useState([]); // State for tasks on selected date
+  const [date, setDate] = useState(new Date()); 
+  const [tasks, setTasks] = useState([]); 
+  const [scheduledTasks, setScheduledTasks] = useState([]); 
 
   // Fetch tasks from the backend
   useEffect(() => {
@@ -18,33 +18,38 @@ const CalendarPage = () => {
         setTasks(response.data);
       } catch (error) {
         console.error('Error fetching tasks:', error);
-      }
+      } 
     };
 
     fetchTasks();
   }, []);
 
-  const tileDisabled = ({ date }) => {
-    // Disable dates before today
-    return date < new Date(new Date().setHours(0, 0, 0, 0)); // Only disable past dates
-  };
-
   const handleDateChange = (newDate) => {
     setDate(newDate);
-    const selectedDateString = newDate.toISOString().split("T")[0]; // Get date in 'YYYY-MM-DD' format
+    const selectedDateString = newDate.toISOString().split("T")[0]; 
 
-    console.log("Selected Date:", selectedDateString); // Log selected date
+    console.log("Selected Date:", selectedDateString); 
 
     // Filter tasks based on the selected date
     const tasksForDate = tasks.filter(task => {
-      const taskDateString = new Date(task.date).toISOString().split("T")[0]; // Convert task date to 'YYYY-MM-DD'
-      console.log("Task Date:", taskDateString); // Log task date
-      return taskDateString === selectedDateString; // Compare dates
+      const taskDateString = new Date(task.date).toISOString().split("T")[0]; 
+      console.log("Task Date:", taskDateString); 
+      return taskDateString === selectedDateString; 
     });
 
-    console.log("Filtered Tasks:", tasksForDate); // Log filtered tasks
+    console.log("Filtered Tasks:", tasksForDate); 
 
     setScheduledTasks(tasksForDate);
+  };
+
+  const getTaskStatusStyle = (status) => {
+    // Style for completed vs. pending tasks
+    return status === "completed" ? { backgroundColor: "#28a745", color: "white" } : { backgroundColor: "#dc3545", color: "white" };
+  };
+
+  const tileDisabled = ({ date }) => {
+    // Disable dates before today if desired
+    return date < new Date(new Date().setHours(0, 0, 0, 0)); // Optionally, disable past dates
   };
 
   return (
@@ -57,9 +62,9 @@ const CalendarPage = () => {
             <Calendar
               onChange={handleDateChange}
               value={date}
-              tileDisabled={tileDisabled} // Disable past dates
-              onClickDay={handleDateChange} // Trigger on date click
-              className="custom-calendar" // Add custom class for styling
+              tileDisabled={tileDisabled}
+              onClickDay={handleDateChange}
+              className="custom-calendar"
             />
           </div>
           <div className="tasks-list">
@@ -67,8 +72,9 @@ const CalendarPage = () => {
             {scheduledTasks.length > 0 ? (
               <ul>
                 {scheduledTasks.map((task, index) => (
-                  <li key={index}>
+                  <li key={index} style={getTaskStatusStyle(task.status)}>
                     {index + 1}) {task.text} 
+                    <span className="task-status">{task.status}</span>
                   </li>
                 ))}
               </ul>
