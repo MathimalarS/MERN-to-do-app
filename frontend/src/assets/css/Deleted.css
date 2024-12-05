@@ -1,0 +1,74 @@
+/* Main styles for the Deleted page */
+.main {
+    display: flex;
+    min-height: 100vh;
+}
+
+.deleted-page {
+    margin-left: 240px; /* Ensure the main content does not overlap with the sidebar */
+    padding: 20px;
+}
+
+.deleted-page h1 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.deleted-page p {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.deleted-tasks-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.deleted-task-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.deleted-task-item:hover {
+    background-color: #f0f0f0;
+}
+
+.deleted-tasks-list p {
+    font-size: 1.2em;
+    color: #aaa;
+}
+.deleted-task-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .deleted-task-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .restore-icon {
+    color: #494949; /* Green color for the restore icon */
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .restore-icon:hover {
+    color: #343434; /* Darker green on hover */
+  }
+  

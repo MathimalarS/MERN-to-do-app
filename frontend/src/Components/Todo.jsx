@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
-import '../assets/css/Todo.css';
+import "../assets/css/Todo.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from 'axios';
+import axios from "axios";
 
 const EditIcon = ({ onClick }) => (
   <svg
@@ -80,7 +80,6 @@ const CloseIcon = ({ onClick }) => (
   </svg>
 );
 
-
 const SliderIcon = ({ onClick }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -118,10 +117,10 @@ const ToDoList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/tasks');
+        const response = await axios.get("http://localhost:3000/api/tasks");
         setTasks(response.data);
       } catch (error) {
-        console.error('Error fetching tasks:', error);
+        console.error("Error fetching tasks:", error);
       }
     };
 
@@ -132,12 +131,15 @@ const ToDoList = () => {
     if (taskInput.trim()) {
       try {
         const newTask = { text: taskInput, completed: false, date: taskDate };
-        const response = await axios.post('http://localhost:3000/api/tasks', newTask);
+        const response = await axios.post(
+          "http://localhost:3000/api/tasks",
+          newTask
+        );
         setTasks([...tasks, response.data]);
         setTaskInput("");
         setTaskDate(null);
       } catch (error) {
-        console.error('Error adding task:', error);
+        console.error("Error adding task:", error);
       }
     }
   };
@@ -151,7 +153,7 @@ const ToDoList = () => {
       const newTasks = tasks.map((t, i) => (i === index ? updatedTask : t));
       setTasks(newTasks);
     } catch (error) {
-      console.error('Error updating task:', error);
+      console.error("Error updating task:", error);
     }
   };
 
@@ -163,7 +165,7 @@ const ToDoList = () => {
       const newTasks = tasks.filter((_, i) => i !== index);
       setTasks(newTasks);
     } catch (error) {
-      console.error('Error deleting task:', error);
+      console.error("Error deleting task:", error);
     }
   };
 
@@ -182,7 +184,7 @@ const ToDoList = () => {
       setTasks(newTasks);
       setIsEditing(null);
     } catch (error) {
-      console.error('Error saving task:', error);
+      console.error("Error saving task:", error);
     }
   };
 
@@ -224,7 +226,7 @@ const ToDoList = () => {
           <DatePicker
             selected={taskDate}
             onChange={(date) => setTaskDate(date)}
-            minDate={new Date()}  // Prevent selecting past dates
+            minDate={new Date()} // Prevent selecting past dates
             placeholderText="Select a date"
             className="date-picker"
           />
@@ -236,8 +238,12 @@ const ToDoList = () => {
               <div className="dropdown">
                 <ul>
                   <li onClick={() => handleFilterChange("All")}>All Tasks</li>
-                  <li onClick={() => handleFilterChange("Completed")}>Completed Tasks</li>
-                  <li onClick={() => handleFilterChange("Pending")}>Pending Tasks</li>
+                  <li onClick={() => handleFilterChange("Completed")}>
+                    Completed Tasks
+                  </li>
+                  <li onClick={() => handleFilterChange("Pending")}>
+                    Pending Tasks
+                  </li>
                 </ul>
               </div>
             )}
@@ -246,7 +252,10 @@ const ToDoList = () => {
 
         <ul className="task-list">
           {filteredTasks.map((task, index) => (
-            <li key={task._id || task.id || index} className={task.completed ? "completed" : ""}>
+            <li
+              key={task._id || task.id || index}
+              className={task.completed ? "completed" : ""}
+            >
               {isEditing === index ? (
                 <>
                   <input
@@ -254,10 +263,12 @@ const ToDoList = () => {
                     value={editedTaskName}
                     onChange={(e) => setEditedTaskName(e.target.value)}
                   />
-                   <div className="task-actions-tick">
-                   <TickIcon onClick={() => handleSaveTask(index)} /><span>
-                   <CloseIcon onClick={handleCancelEdit} /></span>
-                   </div>
+                  <div className="task-actions-tick">
+                    <TickIcon onClick={() => handleSaveTask(index)} />
+                    <span>
+                      <CloseIcon onClick={handleCancelEdit} />
+                    </span>
+                  </div>
                 </>
               ) : (
                 <>

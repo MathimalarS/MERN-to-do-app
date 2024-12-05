@@ -1,45 +1,46 @@
 /* Main container for sidebar and main content */
 .container {
   display: flex;
-  height: 100vh; /* Full height */
+  height: 100vh;
 }
-
 
 /* Main content styling for calendar and tasks */
 .calendar-content {
   padding: 20px;
   display: flex;
-  flex-direction: column; /* Stack heading and calendar */
-  flex: 1; /* Take remaining space */
-  align-items: flex-start; /* Align items to the left inside calendar-content */
-  margin-left: 250px /* Push the entire calendar-content to the right */
+  flex-direction: column;
+  flex: 1;
+  align-items: flex-start;
+  margin-left: 350px;
 }
 
 /* Heading styling */
 .calendar-content h1 {
   margin-bottom: 40px;
   margin-left: 130px;
-  text-align: center; /* Align heading text to the left */
+  text-align: center;
+  align-items: center;
+  font-size: 3.5em;
 }
 
 /* Flex container for calendar and tasks side by side */
 .calendar-and-tasks {
   display: flex;
-  justify-content: flex-start; /* Align to the start */
+  justify-content: flex-start;
   align-items: flex-start;
-  width: 100%; /* Full width */
+  width: 100%;
 }
 
 /* Calendar container updates */
 .calendar-container {
-  width: 100%; /* Adjust calendar width */
-  margin-right: 20px; /* Add margin to separate from tasks */
+  width: 100%;
+  margin-right: 20px;
 }
 
-/* Custom calendar container for additional styling */
+/* Custom calendar styling */
 .custom-calendar {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #ffffff;
+  color: #2c2c2c;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +49,7 @@
 
 /* Task section styling */
 .tasks-list {
-  width: 45%; /* Adjust width for tasks */
+  width: 45%;
   background: #00000088;
   padding: 20px;
   border-radius: 10px;
@@ -56,12 +57,12 @@
   text-align: center;
 }
 
-/* Ensure task list scrolls if content overflows */
+/* Task list items */
 .tasks-list ul {
   list-style-type: none;
   padding: 0;
   overflow-y: auto;
-  max-height: 200px; /* Set a max height for scroll */
+  max-height: 200px;
 }
 
 .tasks-list li {
@@ -71,72 +72,56 @@
   margin-bottom: 10px;
 }
 
-
-/* Ensure task list scrolls if content overflows */
-.tasks-list ul {
-  list-style-type: none;
-  padding: 0;
-  overflow-y: auto;
-  max-height: 200px; /* Set a max height for scroll */
+/* Highlight the current date */
+/* Style for calendar date tiles */
+.react-calendar__tile {
+  color: gray;  /* Set text color to gray */
 }
 
-.tasks-list li {
-  background: #2f3840;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-/* Highlight the current date with a specific background and text color */
+/* Optional: Make the current day stand out */
 .react-calendar__tile--now {
-  background-color: #54c735; /* Highlight color for the current date */
-  color: black;
-  border-radius: 50%; /* Make the current date a circle */
+  color: #333;  /* Slightly darker for today */
+  background-color: #f0f0f0;  /* Light background for today */
+  border-radius: 50%;
 }
 
-/* Ensure the active date (clicked date) also has custom styling */
+/* Style for selected dates to ensure they remain visible */
 .react-calendar__tile--active {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);  /* Change text color for active dates */
+  border-radius: 50%;
 }
 
-/* Styling the month's name and navigation buttons (arrows) in black */
+/* Hover effect for better visibility */
+.react-calendar__tile:hover {
+  background-color: rgba(200, 200, 200, 0.3);  /* Light gray background on hover */
+}
+
+/* Task dot style for incomplete tasks */
+.task-dot {
+  height: 4px;
+  width: 4px;
+  background-color: #dc3545;  /* Red for incomplete tasks */
+  border-radius: 50%;
+  margin: 2px auto;
+}
+
+/* Remove dot if task is completed */
+.react-calendar__tile--completed .task-dot {
+  display: none;
+}
+/* Change month text color */
 .react-calendar__navigation button {
-  color: black; /* Black color for navigation arrows and month names */
-  font-size: 1.2em;
-  font-weight: bold;
+  color: black;  /* Set the text color of the month and arrows */
+  font-size: 1em;  /* Adjust the font size if needed */
+  font-weight: bold;  /* Optional: make it bold */
 }
 
-/* Add a hover effect on navigation buttons */
+/* Change arrow color to black */
+.react-calendar__navigation button svg {
+  fill: black;  /* Ensure arrow icons are black */
+}
+
+/* Optional: Add hover effect for arrows */
 .react-calendar__navigation button:hover {
-  background-color: #e0e0e0;
-}
-
-/* Style for the month and year heading */
-.react-calendar__navigation__label {
-  color: black; /* Black color for the month and year */
-  font-weight: bold;
-}
-
-/* Ensure the calendar container and day cells are well-spaced and centered */
-.react-calendar__tile {
-  width: 20px;
-  height: 40px;
-  margin: 5px;
-  font-size: 1em;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-/* Change the color of all tiles (days) to black */
-.react-calendar__tile {
-  color: black; /* Set default text color to black */
-}
-
-/* Slight change on hover */
-.react-calendar__tile--hover {
-  color: black; /* Ensure hover color is also black */
-  background-color: #f0f0f0; /* Slight change on hover */
+  background-color: rgba(0, 0, 0, 0.1);  /* Light background on hover */
 }

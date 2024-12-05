@@ -14,13 +14,12 @@ const CalendarPage = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/tasks"); // Update with your backend API
+        const response = await axios.get("http://localhost:3000/api/tasks");
         setTasks(response.data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
       }
     };
-
     fetchTasks();
   }, []);
 
@@ -28,30 +27,31 @@ const CalendarPage = () => {
     setDate(newDate);
     const selectedDateString = newDate.toISOString().split("T")[0];
 
-    console.log("Selected Date:", selectedDateString);
-
     // Filter tasks based on the selected date
     const tasksForDate = tasks.filter((task) => {
       const taskDateString = new Date(task.date).toISOString().split("T")[0];
-      console.log("Task Date:", taskDateString);
-      return taskDateString === selectedDateString;
+      return taskDateString === selectedDateString && !task.completed;
     });
 
-    console.log("Filtered Tasks:", tasksForDate);
-
-    setScheduledTasks(tasksForDate);
+    // Ensure scheduledTasks is an array, even if no tasks are found
+    setScheduledTasks(tasksForDate || []);
   };
 
-  const getTaskStatusStyle = (status) => {
-    // Style for completed vs. pending tasks
-    return status === "completed"
-      ? { backgroundColor: "#28a745", color: "white" }
-      : { backgroundColor: "#dc3545", color: "white" };
-  };
+  // Function to show task status dots
+  const getTileContent = ({ date, view }) => {
+    if (view === "month") {
+      const dateString = date.toISOString().split("T")[0];
+      const tasksForDate = tasks.filter(
+        (task) =>
+          new Date(task.date).toISOString().split("T")[0] === dateString &&
+          !task.completed
+      );
 
-  const tileDisabled = () => {
-    // Remove past date disabling logic, so all dates are now selectable
-    return false; // No dates are disabled
+      if (tasksForDate.length > 0) {
+        return <div className="task-dot"></div>;
+      }
+    }
+    return null;
   };
 
   return (
@@ -64,8 +64,8 @@ const CalendarPage = () => {
             <Calendar
               onChange={handleDateChange}
               value={date}
-              tileDisabled={tileDisabled} // No dates will be disabled
-              onClickDay={handleDateChange}
+              tileDisabled={() => false}
+              tileContent={getTileContent}
               className="custom-calendar"
             />
           </div>
@@ -74,7 +74,7 @@ const CalendarPage = () => {
             {scheduledTasks.length > 0 ? (
               <ul>
                 {scheduledTasks.map((task, index) => (
-                  <li key={index} style={getTaskStatusStyle(task.status)}>
+                  <li key={index} className={`task-item ${task.status}`}>
                     {index + 1}) {task.text}
                     <span className="task-status">{task.status}</span>
                   </li>

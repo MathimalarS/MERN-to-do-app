@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const taskRoutes = require('./Routes/Taskroute');
 const calendarRoutes = require('./Routes/CalendarRoutes');
-const NoteRoutes = require('./Routes/NodeRoute');
+const deletedRoutes = require('./Routes/DeletedRoutes'); // Ensure it's named properly
 const morgan = require('morgan');
 require('dotenv').config(); // Load environment variables
 
@@ -16,24 +16,26 @@ app.use(express.json());
 app.use(morgan('dev')); // Log requests
 
 // Routes
-app.use('/api/tasks', taskRoutes);
-app.use('/api/calendar', calendarRoutes);
-app.use('/api/notes', NoteRoutes);
+app.use('/api/tasks', taskRoutes);  // Task routes
+app.use('/api/calendar', calendarRoutes);  // Calendar routes
+app.use('/api/deletedTasks', deletedRoutes); // Deleted tasks routes
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-}).then(() => {
-  console.log('Connected to MongoDB');
-}).catch(err => {
-  console.log('Failed to connect to MongoDB', err);
-});
+})
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch(err => {
+    console.log('Failed to connect to MongoDB', err);
+  });
 
-// Error handling middleware
+// Error handling middleware for async routes
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+  console.error('Error:', err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Start the server
