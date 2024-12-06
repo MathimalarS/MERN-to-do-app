@@ -128,19 +128,26 @@ const ToDoList = () => {
   }, []);
 
   const handleAddTask = async () => {
-    if (taskInput.trim()) {
-      try {
-        const newTask = { text: taskInput, completed: false, date: taskDate };
-        const response = await axios.post(
-          "http://localhost:3000/api/tasks",
-          newTask
-        );
-        setTasks([...tasks, response.data]);
-        setTaskInput("");
-        setTaskDate(null);
-      } catch (error) {
-        console.error("Error adding task:", error);
-      }
+    if (!taskInput.trim()) {
+      alert("Please enter a task name.");
+      return;
+    }
+    if (!taskDate) {
+      alert("Please select a date.");
+      return;
+    }
+
+    try {
+      const newTask = { text: taskInput, completed: false, date: taskDate };
+      const response = await axios.post(
+        "http://localhost:3000/api/tasks",
+        newTask
+      );
+      setTasks([...tasks, response.data]);
+      setTaskInput("");
+      setTaskDate(null);
+    } catch (error) {
+      console.error("Error adding task:", error);
     }
   };
 

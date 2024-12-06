@@ -23,6 +23,7 @@ const Deleted = () => {
 
     fetchDeletedTasks();
   }, []);
+
   const restoreTask = async (taskId) => {
     try {
       if (!taskId) {
@@ -34,7 +35,13 @@ const Deleted = () => {
       const response = await axios.post(
         `http://localhost:3000/api/deletedTasks/restore/${taskId}`
       );
+
       console.log("Task restored:", response.data);
+
+      // Optionally update the deleted tasks state to remove the restored task
+      setDeletedTasks((prevTasks) =>
+        prevTasks.filter((task) => task._id !== taskId)
+      );
     } catch (error) {
       console.error("Error restoring task:", error);
     }
@@ -61,7 +68,7 @@ const Deleted = () => {
               ))}
             </ul>
           ) : (
-            <p>No deleted tasks to show.</p>
+            <p className="no">No deleted tasks to show.</p>
           )}
         </div>
       </div>

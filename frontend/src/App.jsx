@@ -2,15 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import Calendar from "./Components/Calender";
 import ToDoList from "./Components/Todo.jsx";
-// import Stickynotes from "./Components/Stickynotes.jsx";
 import Deleted from "./Components/Deleted.jsx";
 import Sidebar from "./Components/Sidebar.jsx";
-// import Note from "./Components/Note.jsx";
-
+import Settings from "./Components/Setting.jsx";
 
 function App() {
-  
-
   return (
     <Router>
       <Routes>
@@ -19,10 +15,10 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/todo" element={<ToDoList />} />
         <Route path="/deleted" element={<Deleted />} />
+        <Route path="/Setting" element={<Settings />} />
       </Routes>
     </Router>
   );
 }
-
 
 export default App;
