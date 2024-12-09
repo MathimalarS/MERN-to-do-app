@@ -42,7 +42,6 @@ const DeleteIcon = ({ onClick }) => (
     <line x1="6" y1="6" x2="18" y2="18" />
   </svg>
 );
-// Tick (checkmark) icon for completed tasks
 const TickIcon = ({ onClick }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -111,13 +110,12 @@ const ToDoList = () => {
   const [editedTaskName, setEditedTaskName] = useState("");
   const [showCalendar, setShowCalendar] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [currentFilter, setCurrentFilter] = useState("All"); // State to track the selected filter
+  const [currentFilter, setCurrentFilter] = useState("All");
 
-  // Fetch tasks from the backend
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/tasks");
+        const response = await axios.get("http://localhost:5000/api/tasks");
         setTasks(response.data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -140,7 +138,7 @@ const ToDoList = () => {
     try {
       const newTask = { text: taskInput, completed: false, date: taskDate };
       const response = await axios.post(
-        "http://localhost:3000/api/tasks",
+        "http://localhost:5000/api/tasks",
         newTask
       );
       setTasks([...tasks, response.data]);
@@ -156,7 +154,7 @@ const ToDoList = () => {
     try {
       const updatedTask = { ...task, completed: !task.completed };
       const taskId = task._id || task.id;
-      await axios.put(`http://localhost:3000/api/tasks/${taskId}`, updatedTask);
+      await axios.put(`http://localhost:5000/api/tasks/${taskId}`, updatedTask);
       const newTasks = tasks.map((t, i) => (i === index ? updatedTask : t));
       setTasks(newTasks);
     } catch (error) {
@@ -168,7 +166,7 @@ const ToDoList = () => {
     const task = tasks[index];
     try {
       const taskId = task._id || task.id;
-      await axios.delete(`http://localhost:3000/api/tasks/${taskId}`);
+      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`);
       const newTasks = tasks.filter((_, i) => i !== index);
       setTasks(newTasks);
     } catch (error) {
@@ -186,7 +184,7 @@ const ToDoList = () => {
     try {
       const updatedTask = { ...task, text: editedTaskName };
       const taskId = task._id || task.id;
-      await axios.put(`http://localhost:3000/api/tasks/${taskId}`, updatedTask);
+      await axios.put(`http://localhost:5000/api/tasks/${taskId}`, updatedTask);
       const newTasks = tasks.map((t, i) => (i === index ? updatedTask : t));
       setTasks(newTasks);
       setIsEditing(null);
@@ -206,10 +204,9 @@ const ToDoList = () => {
 
   const handleFilterChange = (filter) => {
     setCurrentFilter(filter);
-    setShowFilter(false); // Close the dropdown after selecting a filter
+    setShowFilter(false);
   };
 
-  // Filter the tasks based on the current filter
   const filteredTasks = tasks.filter((task) => {
     if (currentFilter === "All") return true;
     if (currentFilter === "Completed") return task.completed;
@@ -233,7 +230,7 @@ const ToDoList = () => {
           <DatePicker
             selected={taskDate}
             onChange={(date) => setTaskDate(date)}
-            minDate={new Date()} // Prevent selecting past dates
+            minDate={new Date()}
             placeholderText="Select a date"
             className="date-picker"
           />

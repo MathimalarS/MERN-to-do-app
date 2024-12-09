@@ -1,20 +1,19 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { FaUndo } from "react-icons/fa";
-import axios from "axios"; // Import axios for backend requests
-import "../assets/css/Deleted.css"; // Assuming you will have a custom style for this page
+import axios from "axios";
+import "../assets/css/Deleted.css";
 
 const Deleted = () => {
   const [deletedTasks, setDeletedTasks] = useState([]);
 
-  // Fetch deleted tasks from the backend
   useEffect(() => {
     const fetchDeletedTasks = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/deletedTasks"
+          "http://localhost:5000/api/deletedTasks"
         );
-        console.log("Fetched deleted tasks:", response.data); // Add this to check the data
+        console.log("Fetched deleted tasks:", response.data);
         setDeletedTasks(response.data);
       } catch (error) {
         console.error("Error fetching deleted tasks:", error);
@@ -28,17 +27,16 @@ const Deleted = () => {
     try {
       if (!taskId) {
         console.error("No task ID provided");
-        return; // Early exit if taskId is not valid
+        return;
       }
 
-      console.log("Restoring task with ID:", taskId); // Debugging line
+      console.log("Restoring task with ID:", taskId);
       const response = await axios.post(
-        `http://localhost:3000/api/deletedTasks/restore/${taskId}`
+        `http://localhost:5000/api/deletedTasks/restore/${taskId}`
       );
 
       console.log("Task restored:", response.data);
 
-      // Optionally update the deleted tasks state to remove the restored task
       setDeletedTasks((prevTasks) =>
         prevTasks.filter((task) => task._id !== taskId)
       );

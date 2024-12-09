@@ -62,7 +62,7 @@ h1 {
 .add-task button {
     padding: 12px 18px;
     border: none;
-    background-color: #000000;
+    background-color: #484848;
     color: white;
     border-radius: 6px;
     cursor: pointer;
@@ -112,21 +112,19 @@ h1 {
     font-size: 16px;
     transition: background-color 0.2s ease-in-out;
 }
-/* Update the Tick and Close icons to have consistent spacing */
 .tick-icon,
 .close-icon {
-    margin-left: 10px; /* Adjust margin to maintain spacing */
+    margin-left: 10px; 
 }
 
 .dropdown ul li:hover {
     background-color: #f0f0f0;
 }
 
-/* Calendar Dropdown */
 .calendar-dropdown {
     position: absolute;
     top: 50px;
-    left: 250px; /* Adjusted position for better alignment */
+    left: 250px; 
     z-index: 5;
     background-color: white;
     border: 1px solid #ddd;
@@ -135,7 +133,6 @@ h1 {
 }
 
 
-/* Task List */
 .task-list {
     list-style-type: none;
     padding: 0;
@@ -172,10 +169,9 @@ h1 {
 }
 
 .task-list div {
-    margin-left: 10px; /* Space between task text and delete icon */
+    margin-left: 10px; 
 }
 
-/* Edit Task Input Styling */
 .task-list li.editing input[type="text"] {
     width: 100%;
     padding: 12px;
@@ -192,10 +188,9 @@ h1 {
 }
 
 
-/* Responsiveness */
 @media (max-width: 768px) {
     .todo-content {
-        margin-left: 10px; /* Reduce margin for smaller screens */
+        margin-left: 10px; 
         padding: 10px;
     }
 

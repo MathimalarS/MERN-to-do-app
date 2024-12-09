@@ -9,22 +9,20 @@ const Sidebar = () => {
   const [showSettings, setShowSettings] = useState(false);
 
   const handleMenuClick = () => {
-    setExtended(!extended); // Toggle the extended state
+    setExtended(!extended);
   };
 
   const openSettingsPopup = () => {
-    setShowSettings(true); // Show the settings popup
+    setShowSettings(true);
   };
 
   const closeSettingsPopup = () => {
-    setShowSettings(false); // Hide the settings popup
+    setShowSettings(false);
   };
 
   return (
     <>
-      {/* Sidebar Layout */}
       <div className={`sidebar ${extended ? "extended" : ""}`}>
-        {/* Top Section: Menu and Search */}
         <div className="top">
           <img
             onClick={handleMenuClick}
@@ -45,7 +43,6 @@ const Sidebar = () => {
           )}
         </div>
 
-        {/* Center Section: Task Items */}
         <div className="center">
           <div className="center-item">
             <Link to="/todo">
@@ -67,7 +64,6 @@ const Sidebar = () => {
           </div>
         </div>
 
-        {/* Bottom Section: Settings */}
         <div className="bottom">
           <div className="bottom-item" onClick={openSettingsPopup}>
             <img src={assets.settingicon} alt="" />
@@ -76,7 +72,6 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Render the Settings Popup if showSettings is true */}
       {showSettings && <Settings onClose={closeSettingsPopup} />}
     </>
   );

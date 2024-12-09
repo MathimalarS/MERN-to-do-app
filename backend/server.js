@@ -3,24 +3,27 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const taskRoutes = require('./Routes/Taskroute');
 const calendarRoutes = require('./Routes/CalendarRoutes');
-const deletedRoutes = require('./Routes/DeletedRoutes'); // Ensure it's named properly
+const deletedRoutes = require('./Routes/DeletedRoutes'); 
+const signuproute=require('./Routes/SignupRoute');
+const loginRoute = require('./Routes/LoginRoute');
+
 const morgan = require('morgan');
-require('dotenv').config(); // Load environment variables
+require('dotenv').config(); 
 
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable or default
+const port = process.env.PORT || 5000; 
 
-// Middleware
 app.use(cors());
 app.use(express.json());
-app.use(morgan('dev')); // Log requests
+app.use(morgan('dev')); 
 
-// Routes
-app.use('/api/tasks', taskRoutes);  // Task routes
-app.use('/api/calendar', calendarRoutes);  // Calendar routes
-app.use('/api/deletedTasks', deletedRoutes); // Deleted tasks routes
+app.use('/api/tasks', taskRoutes);  
+app.use('/api/calendar', calendarRoutes); 
+app.use('/api/deletedTasks', deletedRoutes);
+app.use('/api/signup',signuproute);
+app.use('/api/login',loginRoute)
 
-// Connect to MongoDB
+
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true

@@ -1,13 +1,12 @@
-import '../assets/css/Home.css';
-import { Typewriter } from 'react-simple-typewriter';
-import { useNavigate } from 'react-router-dom';
+import "../assets/css/Home.css";
+import { Typewriter } from "react-simple-typewriter";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate(); // useNavigate to handle navigation
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    // Navigate to Sticky Wall page
-    navigate('/todo');
+    navigate("/signup");
   };
 
   return (

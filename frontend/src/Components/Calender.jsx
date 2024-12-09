@@ -10,11 +10,10 @@ const CalendarPage = () => {
   const [tasks, setTasks] = useState([]);
   const [scheduledTasks, setScheduledTasks] = useState([]);
 
-  // Fetch tasks from the backend
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/tasks");
+        const response = await axios.get("http://localhost:5000/api/tasks");
         setTasks(response.data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -27,17 +26,14 @@ const CalendarPage = () => {
     setDate(newDate);
     const selectedDateString = newDate.toISOString().split("T")[0];
 
-    // Filter tasks based on the selected date
     const tasksForDate = tasks.filter((task) => {
       const taskDateString = new Date(task.date).toISOString().split("T")[0];
       return taskDateString === selectedDateString && !task.completed;
     });
 
-    // Ensure scheduledTasks is an array, even if no tasks are found
     setScheduledTasks(tasksForDate || []);
   };
 
-  // Function to show task status dots
   const getTileContent = ({ date, view }) => {
     if (view === "month") {
       const dateString = date.toISOString().split("T")[0];

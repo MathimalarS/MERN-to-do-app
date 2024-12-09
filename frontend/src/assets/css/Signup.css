@@ -1,0 +1,106 @@
+.signup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.signup-popup {
+    background: linear-gradient(135deg, #fbf6f6, #8d8888);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    max-width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-popup h1 {
+    color: #1a1a1a;
+    margin: 0 0 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.signup-popup label {
+    color: #1c1c1c;
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.signup-popup input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #676767;
+    border-radius: 5px;
+    background: #ffffff; 
+    color: #000000 ; 
+    box-sizing: border-box;
+}
+
+
+.signup-popup .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #245026;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; 
+}
+
+.signup-popup .submit-button:hover {
+    background: #367038;
+
+}
+
+.signup-popup .login-message {
+    text-align: center;
+    margin-top: 10px;
+    color: #000000; 
+}
+
+.signup-popup .login-link {
+    color: #000000; 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-popup .error {
+    color: red;
+    font-size: 14px;
+}
+
+.signup-popup .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000000;
+    border: none; 
+    outline: none; 
+}
+
+.form-group .input{
+    color: #000000;
+}
+
+.login-link .login-link-text
+
+{
+    color: #000000;
+}
