@@ -1,0 +1,159 @@
+/* Overlay to darken the background */
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.5); /* Lighter black overlay with transparency */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+}
+
+/* Popup container */
+.popup_container {
+	width: 400px;
+	max-width: 100%;
+	height: auto; /* Adjust height to fit content */
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
+	background: linear-gradient(135deg, #d3d3d3 0%, #ffffff 100%);
+	padding: 40px; /* Increased padding for more space around content */
+	position: relative;
+	overflow: hidden; /* Prevent overflow */
+	transition: transform 0.3s ease-in-out;
+	transform: translateY(-20px);
+}
+
+.overlay.active .popup_container {
+	transform: translateY(0);
+}
+
+/* Form container */
+.form_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+/* Heading */
+.form_container h1 {
+	font-size: 35px;
+	margin-top: 0;
+	transition: color 0.3s ease;
+	text-align: center;
+}
+
+/* Input fields styling */
+.input {
+	outline: none;
+	border: 1px solid #ccc;
+	width: 100%; /* Take full width of container */
+	padding: 12px;
+	border-radius: 10px;
+	background-color: rgba(245, 245, 245, 0.9);
+	color: #000000;
+	margin: 15px 0; /* Increased margin to create more space between inputs */
+	font-size: 14px;
+	transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.input:focus {
+	background-color: #ffffff; /* Pure white on focus */
+	transform: scale(1.02); /* Slight zoom-in effect */
+}
+
+
+/* Error message styling */
+.error_msg {
+	width: 100%; /* Full width of container */
+	padding: 12px;
+	margin: 8px 0;
+	font-size: 14px;
+	background-color: rgba(243, 70, 70, 0.8);
+	color: white;
+	border-radius: 5px;
+	text-align: center;
+	transition: background-color 0.3s ease;
+}
+
+/* Buttons styling */
+.white_btn, .green_btn {
+	border: none;
+	outline: none;
+	padding: 12px 0;
+	background-color: transparent;
+	border-radius: 20px;
+	width: 180px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+.white_btn {
+	color: #333;
+	border: 1px solid #ccc;
+}
+
+.white_btn:hover {
+	background-color: rgba(245, 245, 245, 0.8);
+	transform: translateY(-3px);
+}
+
+.green_btn {
+	background-color: #000000;
+	color: white;
+	margin: 10px 0; /* Ensure spacing around the button */
+}
+
+.green_btn:hover {
+	background-color: #000000;
+	transform: translateY(0);
+}
+
+/* Styling for the 'Already have an account?' prompt */
+.login_prompt {
+	margin-top: 10px; /* Increased gap to avoid overlap */
+	text-align: center;
+}
+
+.login_prompt span {
+	font-size: 14px;
+	color: #333;
+}
+
+.login_prompt button {
+	font-size: 14px;
+	padding: 10px 0;
+	background-color: transparent;
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: #333;
+	transition: color 0.3s ease;
+}
+
+.login_prompt button:hover {
+	color: #333;
+	background-color: transparent;
+}
+
+/* Close button */
+.close_button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: none;
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	color: #333;
+	cursor: pointer;
+	transition: color 0.3s ease;
+}

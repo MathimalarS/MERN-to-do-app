@@ -9,81 +9,74 @@ const Settings = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(""); // To capture and show errors
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
-  // Function to fetch user details
+  // Fetch user details
   const fetchUserDetails = async () => {
     try {
-      const token = localStorage.getItem("token"); // Retrieve the token consistently
+      const token = localStorage.getItem("token");
       if (!token) {
         alert("Please log in.");
-        navigate("/login"); // Redirect to login if no token is present
+        navigate("/login");
+        return;
+      }
+      const decodedToken = jwt_decode(token); // If you use jwt-decode
+      if (decodedToken.exp * 1000 < Date.now()) {
+        alert("Session expired. Please log in again.");
+        navigate("/login");
         return;
       }
 
-      // Make the API request with the token
       const response = await axios.get("http://localhost:5000/api/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log("User details fetched:", response.data); // Debug log for response
-
-      if (response.data && response.data.email) {
-        setEmail(response.data.email); // Set the email from the response
-        setPassword(""); // Don't display the password
-        setLoading(false); // Stop loading
-      } else {
-        setError("Failed to load user details.");
-        setLoading(false);
-      }
+      setEmail(response.data.data.email);
+      setPassword("");
+      setLoading(false);
     } catch (error) {
-      console.error("Error fetching user details:", error);
       setLoading(false);
       setError("Failed to load user details.");
     }
   };
 
-  // Function to handle saving the updated profile
+  // Save profile changes
   const handleSave = async () => {
+    setError("");
+    setSuccessMessage("");
+
     if (!email || !password) {
       setError("Please enter both email and password.");
       return;
     }
 
-    const updatedProfileData = { email, newPassword: password };
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.put(
+      await axios.put(
         "http://localhost:5000/api/profile",
-        updatedProfileData,
+        { email, newPassword: password },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log("Profile updated:", response.data);
-      setIsEditing(false); // Exit edit mode after saving
+      setIsEditing(false);
+      setSuccessMessage("Profile updated successfully!");
     } catch (error) {
-      console.error(
-        "Error saving profile:",
-        error.response ? error.response.data : error.message
-      );
-      setError(
-        error.response?.data?.message ||
-          "Error saving profile. Please try again."
-      );
+      setError(error.response?.data?.message || "Error saving profile.");
     }
   };
 
-  // Function to handle logout
+  // Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
 
   useEffect(() => {
-    fetchUserDetails(); // Fetch user details when the component mounts
-  }, []); // Empty array ensures the effect runs only once after the initial render
+    fetchUserDetails();
+  }, []);
 
   return (
     <div className="settings-container">
@@ -95,15 +88,20 @@ const Settings = () => {
         ) : (
           <>
             {error && <p className="error-message">{error}</p>}
+            {successMessage && (
+              <p className="success-message">{successMessage}</p>
+            )}
 
             {!isEditing ? (
               <div className="profile-view">
                 <p className="profile-email">Email: {email}</p>
-                {/* Don't display password in the profile view */}
+                <p className="profile-email">Password: {password}</p>
                 <button
                   className="edit-button"
-                  onClick={() => setIsEditing(true)}
-                  aria-label="Edit Profile"
+                  onClick={() => {
+                    setIsEditing(true);
+                    setError("");
+                  }}
                 >
                   Edit Profile <FaEdit />
                 </button>
@@ -117,8 +115,7 @@ const Settings = () => {
                     className="input-field"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter new email"
-                    name="email"
+                    disabled={loading}
                   />
                 </label>
                 <label className="input-label">
@@ -128,24 +125,19 @@ const Settings = () => {
                     className="input-field"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter new password"
-                    name="password"
+                    disabled={loading}
                   />
                 </label>
                 <button
                   className="save-button"
                   onClick={handleSave}
-                  aria-label="Save profile changes"
+                  disabled={loading}
                 >
                   Save
                 </button>
               </div>
             )}
-            <button
-              className="logout-button right-align"
-              onClick={handleLogout}
-              aria-label="Logout"
-            >
+            <button className="logout-button" onClick={handleLogout}>
               Logout <FaSignOutAlt />
             </button>
           </>
