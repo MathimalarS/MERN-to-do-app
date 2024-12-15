@@ -74,17 +74,98 @@ h1 {
     background-color: #218838;
 }
 
-.filter-tasks {
-    display: flex;
-    align-items: center;
-    margin-left: 10px;
-    position: relative;
+.filter-tasks .dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-left: 750px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    padding: 10px;
+    width: 150px;
+    z-index: 100;
 }
 
-.filter-tasks svg {
+.filter-tasks .dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter-tasks .dropdown li {
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.filter-tasks .dropdown li:hover {
+    background-color: #f1f1f1;
+}
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 700px;
+}
+
+.task-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #7c7c7c;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.task-list li.completed {
+    background-color: #d4edda;
+    text-decoration: line-through;
+}
+
+.task-actions, .task-actions-tick {
+    display: flex;
+    align-items: center;
+}
+
+.task-actions svg,
+.task-actions-tick svg {
     cursor: pointer;
     margin-right: 10px;
 }
+
+.task-actions-tick svg {
+    color: #28a745;
+}
+
+.task-actions svg {
+    color: #007bff;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-right: 10px;
+    flex: 1;
+    font-size: 16px;
+}
+
+input[type="text"]:focus {
+    border-color: #28a745;
+    outline: none;
+}
+
 
 .dropdown {
     position: absolute;

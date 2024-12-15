@@ -54,6 +54,10 @@
   color: black;
   text-align:center;
 }
+.search-bar-container input
+{
+  color: black;
+}
 
 .search-icon {
   position: absolute;
