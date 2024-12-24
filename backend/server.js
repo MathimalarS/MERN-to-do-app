@@ -31,6 +31,7 @@ app.use('/api/profile', profileRoute);
 app.use('/api/auth',auth);
 app.use('/api/users',user);
 
+mongoose.connect('mongodb+srv://Malar:<Mmsara$04>@cluster0.nuh28.mongodb.net/TODO?retryWrites=true&w=majority&appName=Cluster0');
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
