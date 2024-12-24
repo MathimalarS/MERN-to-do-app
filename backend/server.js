@@ -33,17 +33,6 @@ app.use('/api/users',user);
 
 mongoose.connect('mongodb+srv://Malar:<Mmsara$04>@cluster0.nuh28.mongodb.net/TODO?retryWrites=true&w=majority&appName=Cluster0');
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch(err => {
-    console.error('Failed to connect to MongoDB:', err);
-  });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
